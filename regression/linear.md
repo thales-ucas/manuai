@@ -1,7 +1,7 @@
 # 一元线性回归
 
 
-人工智能里，最容易让人理解的应该就是 **回归** 这个用xls都可以做
+人工智能里，最容易让人理解的应该就是 **回归**， 这个用xls都可以做
 
 
 开篇必须说几个概念，早就懂和不愿意看的直接跳过
@@ -21,7 +21,7 @@
 我们初中时候就学过 **线性方程** (*linear equation*)
 
 
-限行方程有一个 **斜截式** (*slope intercept form*)
+线性方程有一个 **斜截式** (*slope intercept form*)
 
 
 y = kx + b
@@ -50,15 +50,15 @@ def linear(x):
 javascript
 ```js
 function linear(x) {
-    return y = x * 2 + 1;
+    return x * 2 + 1;
 }
 ```
 
 
-简单来说，y=2x+1就是最终的模型
+简单来说，y=2x+1就是训练后的模型
 
 
-我们的 **人工智能** 做的就是找出这个 *2* 和 *1*
+我们的 **人工智能** 做的，就是找出这个 *2* 和 *1*
 
 
 其实可以理解为y=kx+b的方程，已知y和x求k和b
@@ -137,37 +137,40 @@ https://baike.baidu.com/item/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD
 ![离差](./assets/deviation.png)
 
 
-## 回归模型
+# 回归模型
 
 
-$y_i = \alpha + \beta x_i + \varepsilon_i$
+y<sub>i</sub> = &#945; + &#946;x<sub>i</sub> + &#949;<sub>i</sub>
 
 
-我们可以先不管$\varepsilon_i$(之后会详细介绍)
+我们可以先不管&#949;<sub>i</sub>(之后会详细介绍)
 
 
-只看$y_i = \alpha + \beta x_i$
+只看y<sub>i</sub> = &#945; + &#946;x<sub>i</sub>
 
 
 那么，多个已知x和y求&#945;和&#946;我们一步一步看
 
 
-$\sum\limits_{i=1}^n(y_i - \hat{y}_i)^2$
+> 就是刚才的y=kx+b就是换了个名字
 
 
-> &#8721;就是总共i个x和y的组合，加载一起，还不懂就看看高中数学书，找“西格玛”
+![$\sum\limits_{i=1}^n(y_i - \hat{y}_i)^2$](https://latex.codecogs.com/png.latex?\sum\limits_{i=1}^n(y_i%20-%20\hat{y}_i)^2)
+
+
+> &#8721;就是总共n个数字的组合，加载一起，还不懂就看看高中数学书，找“西格玛”
 
 
 因为
 
 
-$\hat{y_i} = \alpha + \beta x_i$
+![$\hat{y_i} = \alpha + \beta x_i$](https://latex.codecogs.com/png.latex?\hat{y_i}%20=%20\alpha%20+%20\beta%20x_i)
 
 
 所以我们最后得到方程式
 
 
-$\sum\limits_{i=1}^n[y_i - (\alpha + \beta x_i)]^2$
+![$\sum\limits_{i=1}^n[y_i - (\alpha + \beta x_i)]^2$](https://latex.codecogs.com/png.latex?\sum\limits_{i=1}^n[y_i%20-%20(\alpha%20+%20\beta%20x_i)]^2)
 
 
 我们求这个方程的最小值
@@ -176,13 +179,13 @@ $\sum\limits_{i=1}^n[y_i - (\alpha + \beta x_i)]^2$
 利用 **微分法** 得到两个正规方程
 
 
-$\begin{cases} \sum{y_i} = n\alpha + \beta \sum{x_i} \\ \sum{x_i y_i} = \alpha \sum{x_i} + \beta \sum{x_i^2} \end{cases}$
+![$\begin{cases} \sum{y_i} = n\alpha + \beta \sum{x_i} \\ \sum{x_i y_i} = \alpha \sum{x_i} + \beta \sum{x_i^2} \end{cases}$](https://latex.codecogs.com/png.latex?\begin{cases}%20\sum{y_i}%20=%20n\alpha%20+%20\beta%20\sum{x_i}%20\\\\%20\sum{x_i%20y_i}%20=%20\alpha%20\sum{x_i}%20+%20\beta%20\sum{x_i^2}%20\end{cases})
 
 
 然后把方程变成求&#945;和&#946;
 
 
-$\begin{cases} \beta = \frac{\sum{(x_i - \bar{x})(y_i - \bar{y})}}{\sum{(x_i - \bar{x})^2}} = \frac{n\sum{x_i y_i} - \sum{x_i} \sum{y_i}}{n\sum{x_i^2} - (\sum{x_i})^2} \\ \alpha = \frac{\sum{y_i}}{n} - \beta \times \frac{\sum{x_i}}{n} = \bar{y} - \beta\bar{x} \end{cases}$
+![$\begin{cases} \beta = \frac{\sum{(x_i - \bar{x})(y_i - \bar{y})}}{\sum{(x_i - \bar{x})^2}} = \frac{n\sum{x_i y_i} - \sum{x_i} \sum{y_i}}{n\sum{x_i^2} - (\sum{x_i})^2} \\ \alpha = \frac{\sum{y_i}}{n} - \beta \times \frac{\sum{x_i}}{n} = \bar{y} - \beta\bar{x} \end{cases}$](https://latex.codecogs.com/png.latex?\begin{cases}%20\beta%20=%20\frac{\sum{(x_i%20-%20\bar{x})(y_i%20-%20\bar{y})}}{\sum{(x_i%20-%20\bar{x})^2}}%20=%20\frac{n\sum{x_i%20y_i}%20-%20\sum{x_i}%20\sum{y_i}}{n\sum{x_i^2}%20-%20(\sum{x_i})^2}%20\\\\%20\alpha%20=%20\frac{\sum{y_i}}{n}%20-%20\beta%20\times%20\frac{\sum{x_i}}{n}%20=%20\bar{y}%20-%20\beta\bar{x}%20\end{cases})
 
 
 
@@ -239,16 +242,16 @@ regression = Regression(x, y)
 ![plot](./assets/plot.png)
 
 
-## 细节拆分
+# 细节拆分
 
 
-咱们一步步来计算一下，并且该用js语言，既然手撕最大的好处就是前后台都可以用
+咱们一步步来计算一下，并且该用js语言，既然手撕，最大的好处就是前后台都可以用
 
 
 我们先拿出公式(只要找出公式，就可以还原人工智能的“机器学习”)
 
 
-$\beta = \frac{n\sum{x_i y_i} - \sum{x_i} \sum{y_i}}{n\sum{x_i^2} - (\sum{x_i})^2}$
+![$\beta = \frac{n\sum{x_i y_i} - \sum{x_i} \sum{y_i}}{n\sum{x_i^2} - (\sum{x_i})^2}$](https://latex.codecogs.com/png.latex?\beta%20=%20\frac{n\sum{x_i%20y_i}%20-%20\sum{x_i}%20\sum{y_i}}{n\sum{x_i^2}%20-%20(\sum{x_i})^2})
 
 
 上面的式子我们一个个解释，顺便用代码实现，先定义x和y
@@ -260,10 +263,10 @@ const y = [300,350,490,500,600,610,700,660];
 const n = x.length;
 ```
 
-### 拆解1
+## 拆解1
 
 
-$n\sum{x_i y_i}$
+![$n\sum{x_i y_i}$](https://latex.codecogs.com/png.latex?n\sum{x_i%20y_i})
 
 
 这个就是说让每个x和y相乘，然后再加一起，最终的值再乘以n
@@ -289,13 +292,13 @@ console.log(sum * n);
 ```
 
 
-### 拆解2
+## 拆解2
 
 
-$\sum{x_i} \sum{y_i}$
+![$\sum{x_i} \sum{y_i}$](https://latex.codecogs.com/png.latex?\sum{x_i}%20\sum{y_i})
 
 
-做完刚才的，这个就简单了吧，就是所有的x加和乘以所有y的加和
+做完刚才的，这个就简单了吧，就是所有的x加和，乘以所有y的加和
 
 
 也就是
@@ -322,13 +325,13 @@ console.log(sumx * sumy)
 ```
 
 
-### 拆解3
+## 拆解3
 
 
-$n\sum{x_i^2}$
+![$n\sum{x_i^2}$](https://latex.codecogs.com/png.latex?n\sum{x_i^2})
 
 
-这次是指数函数了，就是x的每个值得平方加起来，最后再乘以n
+这次是指数函数了，就是x的每个值的平方加起来，最后再乘以n
 
 
 ```
@@ -348,10 +351,10 @@ console.log(sum * n);
 ```
 
 
-### 拆解4
+## 拆解4
 
 
-$(\sum{x_i})^2$
+![$(\sum{x_i})^2$](https://latex.codecogs.com/png.latex?(\sum{x_i})^2)
 
 
 这个是所有x加和，最后再平方
@@ -374,7 +377,7 @@ console.log(sum ** 2);
 ```
 
 
-### 整合
+## 整合
 
 
 最后这四部就可以合并起来了获得最终的beta
@@ -398,13 +401,13 @@ console.log(beta);
 ```
 
 
-### alpha
+## alpha
 
 
-$\alpha = \frac{\sum{y_i}}{n} - \beta \times \frac{\sum{x_i}}{n} = \bar{y} - \beta\bar{x}$
+![$\alpha = \frac{\sum{y_i}}{n} - \beta \times \frac{\sum{x_i}}{n} = \bar{y} - \beta\bar{x}$](https://latex.codecogs.com/png.latex?\alpha%20=%20\frac{\sum{y_i}}{n}%20-%20\beta%20\times%20\frac{\sum{x_i}}{n}%20=%20\bar{y}%20-%20\beta\bar{x})
 
 
-alpah比较简单就用y的均值减去beta乘以x的均值就可以了
+&#913;比较简单就用y的均值减去&#914;乘以x的均值就可以了
 
 
 ```js
@@ -522,3 +525,10 @@ console.log(predictions);
 
 
 怎么样，js照样写人工智能
+
+
+源码:
+
+
+- https://gitee.com/thales-ucas/manuai.git
+- https://github.com/thales-ucas/manuai.git
