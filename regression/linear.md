@@ -21,14 +21,10 @@
 我们初中时候就学过 **线性方程** (*linear equation*)
 
 
-当初的线性方程公式是也就是 **斜截式** (*slope intercept form*)
+限行方程有一个 **斜截式** (*slope intercept form*)
 
 
 y = kx + b
-
-
-> 其实就是把系数a换成了k来表示
-
 
 
 比如我们让k=2，b=1
@@ -41,30 +37,22 @@ y = kx + b
 ## 代码实现
 
 
-我们现在实现一下过程，便于我们好好理解人工智能的原理
-
-
-比如y=2x+1的代码实现
+这个非常简单，一行代码就可以实现
 
 
 Python
 ```py
-def form(x):
-    y = x * 2 + 1
-    return y
+def linear(x):
+    return x * 2 + 1
 ```
 
 
 javascript
 ```js
-function form(x) {
-    const y = x * 2 + 1;
-    return y;
+function linear(x) {
+    return y = x * 2 + 1;
 }
 ```
-
-
-其他的不做累述了
 
 
 简单来说，y=2x+1就是最终的模型
@@ -74,7 +62,6 @@ function form(x) {
 
 
 其实可以理解为y=kx+b的方程，已知y和x求k和b
-
 
 
 # 回归分析
@@ -113,6 +100,8 @@ https://baike.baidu.com/item/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD
 其实这个是有一个趋势的，我们可以用一条线表示出来，这就是回归
 
 
+![plot](./assets/plot.png)
+
 
 ## 确定方程
 
@@ -142,10 +131,10 @@ https://baike.baidu.com/item/%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD
 那么就看每个点到这个直线的距离的和最小，那么说明误差最小
 
 
-> 实际上是离差平方的总和，抵消正负，并且方便对比波动
+实际的y减去预测的模型算出来的y称为 **离差**
 
 
-就是把所有的实际的y减去预测的模型算出来的y
+![离差](./assets/deviation.png)
 
 
 ## 回归模型
@@ -160,7 +149,7 @@ $y_i = \alpha + \beta x_i + \varepsilon_i$
 只看$y_i = \alpha + \beta x_i$
 
 
-那么，多个已知x和y求&#945;和&#946;就是如下
+那么，多个已知x和y求&#945;和&#946;我们一步一步看
 
 
 $\sum\limits_{i=1}^n(y_i - \hat{y}_i)^2$
@@ -172,7 +161,7 @@ $\sum\limits_{i=1}^n(y_i - \hat{y}_i)^2$
 因为
 
 
-$\hat{y} = \alpha + \beta x_i$
+$\hat{y_i} = \alpha + \beta x_i$
 
 
 所以我们最后得到方程式
@@ -250,3 +239,286 @@ regression = Regression(x, y)
 ![plot](./assets/plot.png)
 
 
+## 细节拆分
+
+
+咱们一步步来计算一下，并且该用js语言，既然手撕最大的好处就是前后台都可以用
+
+
+我们先拿出公式(只要找出公式，就可以还原人工智能的“机器学习”)
+
+
+$\beta = \frac{n\sum{x_i y_i} - \sum{x_i} \sum{y_i}}{n\sum{x_i^2} - (\sum{x_i})^2}$
+
+
+上面的式子我们一个个解释，顺便用代码实现，先定义x和y
+
+
+```js
+const x = [300,400,400,550,720,850,900,950];
+const y = [300,350,490,500,600,610,700,660];
+const n = x.length;
+```
+
+### 拆解1
+
+
+$n\sum{x_i y_i}$
+
+
+这个就是说让每个x和y相乘，然后再加一起，最终的值再乘以n
+
+
+就是
+
+
+```
+(300*300 + 400*350 + 400*490 + ... + 950*660) * 8
+```
+
+
+代码表现一下
+
+
+```js
+let sum = 0
+for( const i in x) {
+  sum += x[i] * y[i];
+}
+console.log(sum * n);
+```
+
+
+### 拆解2
+
+
+$\sum{x_i} \sum{y_i}$
+
+
+做完刚才的，这个就简单了吧，就是所有的x加和乘以所有y的加和
+
+
+也就是
+
+
+```
+(300+400+400+...+950) * (300+350+490+...+660)
+```
+
+
+代码表现一下
+
+
+```js
+let sumx = 0
+for(const num of x) {
+  sumx += num;
+}
+let sumy = 0;
+for(const num of y) {
+  sumy += num;
+}
+console.log(sumx * sumy)
+```
+
+
+### 拆解3
+
+
+$n\sum{x_i^2}$
+
+
+这次是指数函数了，就是x的每个值得平方加起来，最后再乘以n
+
+
+```
+(300*300 + 400*400 + 400*400 + ... + 950*950) * n
+```
+
+
+代码
+
+
+```js
+let sum = 0;
+for(const num of x) {
+  sum += num ** 2;
+}
+console.log(sum * n);
+```
+
+
+### 拆解4
+
+
+$(\sum{x_i})^2$
+
+
+这个是所有x加和，最后再平方
+
+
+```
+(300+400+400+...+950) * (300+400+400+...+950)
+```
+
+
+代码
+
+
+```js
+let sum = 0;
+for(const num of x) {
+  sum += num;
+}
+console.log(sum ** 2);
+```
+
+
+### 整合
+
+
+最后这四部就可以合并起来了获得最终的beta
+
+
+```js
+funciton sum(arr, fun = (v, k) => v) {
+  let s = 0;
+  const operate = fun;
+  for(const i in arr) {
+    const num = arr[i];
+    s += operate(num, i);
+  }
+  return s;
+}
+const beta = (sum(x, (v, k) => v * y[k]) * n
+                  - sum(x) * sum(y)) /
+                (sum(x, (v) => v*v) * n  
+                  - Math.pow(sum(x), 2));
+console.log(beta);
+```
+
+
+### alpha
+
+
+$\alpha = \frac{\sum{y_i}}{n} - \beta \times \frac{\sum{x_i}}{n} = \bar{y} - \beta\bar{x}$
+
+
+alpah比较简单就用y的均值减去beta乘以x的均值就可以了
+
+
+```js
+funciton avg(arr) {
+  let sum = 0;
+  for(const num of x) {
+    sum += num;
+  }
+  return sum / arr.length;
+}
+
+console.log(avg(y) - beta * avg(x))
+```
+
+
+## 创建回归模型
+
+
+最后我们可以写一个类，获取这个线性回归
+
+
+```js
+class Regression {
+  constructor() {
+    this.x = [];
+    this.y = [];
+    this.n = 0;
+    this.beta = 1;
+    this.alpha = 0;
+  }
+  /**
+   * 适配
+   * @param {Array} x 
+   * @param {Array} y 
+   */
+  fit(x, y) {
+    this.x = x;
+    this.y = y;
+    this.n = x.length;
+    this.beta = this.getBeta();
+    this.alpha = this.getAlpha(this.beta);
+  }
+  /**
+   * 预测
+   * @param {Array}  x 数据集
+   * @returns {Array} 预测结果数据集
+   */
+  predict(x) {
+    if(!Array.isArray(x)) x = [x];
+    const y = [];
+    for(const num of x) {
+      y.push(this.alpha + num * this.beta);
+    }
+    return y;
+  }
+  /**
+   * 获取beta
+   * @returns {Number}  斜率
+   */
+  getBeta() {
+    const beta = (this.sum(this.x, (v, k) => v * this.y[k])*this.n 
+                  - this.sum(this.x)*this.sum(this.y)) /
+                (this.sum(this.x, (v)=>v*v) * this.n  
+                  - Math.pow(this.sum(this.x), 2));
+    return beta;
+  }
+  /**
+   * 获取alpha
+   * @param {Number} beta 斜率
+   * @returns {Number}  偏移量
+   */
+  getAlpha(beta) {
+    return this.avg(this.y) - this.avg(this.x) * beta;
+  }
+  /**
+   * 求和(Σ)
+   * @param {Array} arr 数字集合
+   * @param {Function}  fun 每个集合的操作方法
+   */
+  sum(arr, fun = (v, k) => v) {
+    let s = 0;
+    const operate = fun;
+    for(const i in arr) {
+      const num = arr[i];
+      s += operate(num, i);
+    }
+    return s;
+  }
+  /**
+   * 均值
+   * @param {Array} arr 数字集合
+   */
+  avg(arr) {
+    const s = this.sum(arr);
+    return s / arr.length;
+  }
+}
+export default Regression;
+```
+
+
+只要加载这个类，就可以做 **一元线性回归** 的预测了
+
+
+```js
+import Regression from './regression.mjs'
+
+const regression = new Regression() // 构造回归模型
+const x = [300,400,400,550,720,850,900,950];
+const y = [300,350,490,500,600,610,700,660];
+regression.fit(x, y); // 训练模型
+const predictions = regression.predict([200, 1000]); // 预测数据
+console.log(predictions);
+```
+
+
+怎么样，js照样写人工智能
