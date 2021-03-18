@@ -158,7 +158,7 @@ y<sub>i</sub> = &#945; + &#946;x<sub>i</sub> + &#949;<sub>i</sub>
 ![$\sum\limits_{i=1}^n(y_i - \hat{y}_i)^2$](https://latex.codecogs.com/png.latex?\sum\limits_{i=1}^n(y_i%20-%20\hat{y}_i)^2)
 
 
-> &#8721;就是总共n个数字的组合，加载一起，还不懂就看看高中数学书，找“西格玛”
+> &#8721;就是总共n个数字的组合，加在一起，还不懂就看看高中数学书，找“西格玛”
 
 
 因为
@@ -200,6 +200,7 @@ Python
 
 定义一个类计算
 ```py
+import numpy as np
 class Regression:
   def __init__(self, x, y):
     self.n = len(x)
@@ -426,7 +427,7 @@ console.log(avg(y) - beta * avg(x))
 ## 创建回归模型
 
 
-最后我们可以写一个类，获取这个线性回归
+最后我们可以写一个类(regression.mjs)，获取这个线性回归
 
 
 ```js
