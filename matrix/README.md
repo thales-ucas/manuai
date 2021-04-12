@@ -401,5 +401,5 @@ console.log('最终分数', a.multiply(b));
 源码:
 
 
-- https://gitee.com/thales-ucas/matrix/
-- https://github.com/thales-ucas/matrix/
+- https://gitee.com/thales-ucas/manuai/tree/main/matrix
+- https://github.com/thales-ucas/manuai/tree/main/matrix
