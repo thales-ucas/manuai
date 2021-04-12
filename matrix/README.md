@@ -4,7 +4,7 @@
 在数学中，矩阵（Matrix）是一个按照长方阵列排列的复数或实数集合
 
 
-最早来自于方程组的系数及常数所构成的方阵，这一概念由19世纪英国数学家凯利首先提出。
+最早来自于方程组的系数及常数所构成的方阵，这一概念由19世纪英国数学家凯利首先提出
 
 
 多元计算时候，矩阵很常见
@@ -111,7 +111,7 @@ console.log('转置', a.T);
 矩阵尺寸 3 2
 矩阵第一行 [ 1, 3 ]
 矩阵第一列 [ 1, 5, 9 ]
-转制 Matrix { _arr: [ [ 1, 5, 9 ], [ 3, 7, 1 ] ] }
+转置 Matrix { _arr: [ [ 1, 5, 9 ], [ 3, 7, 1 ] ] }
 ```
 
 
@@ -136,10 +136,10 @@ console.log('转置', a.T);
 例如：
 
 
-$\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix} + \begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix} = \begin{bmatrix}1+2&3+2\\5+4&7+0\\9+6&1+8\end{bmatrix} = \begin{bmatrix}3&5\\9&7\\15&9\end{bmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}&plus;\begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix}=\begin{bmatrix}1&plus;2&3&plus;2\\5&plus;4&7&plus;0\\9&plus;6&1&plus;8\end{bmatrix}=\begin{bmatrix}3&5\\9&7\\15&9\end{bmatrix}" title="\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}+\begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix}=\begin{bmatrix}1+2&3+2\\5+4&7+0\\9+6&1+8\end{bmatrix}=\begin{bmatrix}3&5\\9&7\\15&9\end{bmatrix}" />
 
 
-> 两个矩阵必须行列都一样才能想加，比如上面的式子都是3*2的矩阵
+> 两个矩阵必须行列都一样才能想加，比如上面的式子都是3&times;2的矩阵
 
 
 ## 减法
@@ -151,8 +151,7 @@ $\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix} + \begin{bmatrix}2&2\\4&0\\6&8\end{bm
 例如：
 
 
-$\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix} - \begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix} = \begin{bmatrix}1-2&3-2\\5-4&7-0\\9-6&1-8\end{bmatrix} = \begin{bmatrix}-1&1\\1&7\\3&-7\end{bmatrix}$
-
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}-\begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix}=\begin{bmatrix}1-2&3-2\\5-4&7-0\\9-6&1-8\end{bmatrix}=\begin{bmatrix}-1&1\\1&7\\3&-7\end{bmatrix}" title="\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}-\begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix}=\begin{bmatrix}1-2&3-2\\5-4&7-0\\9-6&1-8\end{bmatrix}=\begin{bmatrix}-1&1\\1&7\\3&-7\end{bmatrix}" />
 
 ## 代码实现
 
@@ -243,25 +242,28 @@ console.log('相减', a.minus(b));
 例如：
 
 
-$A=\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;A=\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}" title="A=\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}" />
 
+> 
 
-$B=\begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;B=\begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix}" title="B=\begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix}" />
 
 
 如果A和B还是之前那样的是不能乘的，因为A的行必须跟B的列相等，A的行是3，B的列是2
 
 
-B必须列=3才能相乘
+B必须列等于3才能相乘
 
 
-$A=\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;A=\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}" title="A=\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}" />
 
+>
 
-$B=\begin{bmatrix}2&4&6\\2&0&8\end{bmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;B=\begin{bmatrix}2&4&6\\2&0&8\end{bmatrix}" title="B=\begin{bmatrix}2&4&6\\2&0&8\end{bmatrix}" />
 
+>
 
-$C=AB=\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}\times\begin{bmatrix}2&4&6\\2&0&8\end{bmatrix}=\begin{bmatrix}1\times2+3\times2&1\times4+3\times0&1\times6+3\times8\\5\times2+7\times2&4\times2+7\times2&0\times6+7\times8\\9\times2+1\times2&9\times4+1\times0&9\times6+1\times8\end{bmatrix}=\begin{bmatrix}8&4&30\\24&20&86\\20&36&62\end{bmatrix}$
+<img src="https://latex.codecogs.com/png.image?C=AB=\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}\times\begin{bmatrix}2&4&6\\2&0&8\end{bmatrix}\\=\begin{bmatrix}1\times2&plus;3\times2&1\times4&plus;3\times0&1\times6&plus;3\times8\\5\times2&plus;7\times2&4\times2&plus;7\times2&0\times6&plus;7\times8\\9\times2&plus;1\times2&9\times4&plus;1\times0&9\times6&plus;1\times8\end{bmatrix}=\begin{bmatrix}8&4&30\\24&20&86\\20&36&62\end{bmatrix}" title="C=AB=\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}\times\begin{bmatrix}2&4&6\\2&0&8\end{bmatrix}\\=\begin{bmatrix}1\times2+3\times2&1\times4+3\times0&1\times6+3\times8\\5\times2+7\times2&4\times2+7\times2&0\times6+7\times8\\9\times2+1\times2&9\times4+1\times0&9\times6+1\times8\end{bmatrix}=\begin{bmatrix}8&4&30\\24&20&86\\20&36&62\end{bmatrix}" />
 
 
 一个3&times;2的矩阵乘以一个2&times;3的矩阵，最后是3&times;3的矩阵
@@ -270,7 +272,10 @@ $C=AB=\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}\times\begin{bmatrix}2&4&6\\2&0&8
 > 注意，AB不等于BA
 
 
-$D=BA=\begin{bmatrix}2&4&6\\2&0&8\end{bmatrix}\times\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}=\begin{bmatrix}2\times1+4\times5+6\times9&2\times3+4\times7+6\times1\\2\times1+0\times5+8\times9&2\times3+0\times7+8\times1\end{bmatrix}=\begin{bmatrix}76&40\\74&14\end{bmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;D=BA=\begin{bmatrix}2&4&6\\2&0&8\end{bmatrix}\times\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}\\=\begin{bmatrix}2\times1&plus;4\times5&plus;6\times9&2\times3&plus;4\times7&plus;6\times1\\2\times1&plus;0\times5&plus;8\times9&2\times3&plus;0\times7&plus;8\times1\end{bmatrix}=\begin{bmatrix}76&40\\74&14\end{bmatrix}" title="D=BA=\begin{bmatrix}2&4&6\\2&0&8\end{bmatrix}\times\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}\\=\begin{bmatrix}2\times1+4\times5+6\times9&2\times3+4\times7+6\times1\\2\times1+0\times5+8\times9&2\times3+0\times7+8\times1\end{bmatrix}=\begin{bmatrix}76&40\\74&14\end{bmatrix}" />
+
+
+一个2&times;3的矩阵乘以一个3&times;2的矩阵，最后是2&times;2的矩阵
 
 
 ## 代码实现
@@ -396,6 +401,8 @@ console.log('最终分数', a.multiply(b));
 }
 ```
 
+
+本次我们讲到这里，之后的人工智能模型会经常用到这个矩阵
 
 
 源码:
