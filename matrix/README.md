@@ -139,7 +139,7 @@ console.log('转置', a.T);
 <img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}&plus;\begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix}=\begin{bmatrix}1&plus;2&3&plus;2\\5&plus;4&7&plus;0\\9&plus;6&1&plus;8\end{bmatrix}=\begin{bmatrix}3&5\\9&7\\15&9\end{bmatrix}" title="\begin{bmatrix}1&3\\5&7\\9&1\end{bmatrix}+\begin{bmatrix}2&2\\4&0\\6&8\end{bmatrix}=\begin{bmatrix}1+2&3+2\\5+4&7+0\\9+6&1+8\end{bmatrix}=\begin{bmatrix}3&5\\9&7\\15&9\end{bmatrix}" />
 
 
-> 两个矩阵必须行列都一样才能想加，比如上面的式子都是3&times;2的矩阵
+> 两个矩阵必须行列都一样才能相加，比如上面的式子都是3&times;2的矩阵
 
 
 ## 减法
@@ -164,7 +164,7 @@ class Matrix {
   ……
   /**
    * 矩阵相加
-   * @param {Matrix} mat 要想加的同形矩阵
+   * @param {Matrix} mat 要相减的同形矩阵
    * @returns {Matrix} 矩阵
    */
   plus(mat) {
@@ -179,7 +179,7 @@ class Matrix {
   }
   /**
    * 矩阵相减
-   * @param {Matrix} mat 要想加的同形矩阵
+   * @param {Matrix} mat 要相加的同形矩阵
    * @returns {Matrix} 矩阵
    */
    minus(mat) {

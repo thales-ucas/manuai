@@ -1,10 +1,9 @@
+import Matrix from '../matrix/matrix.mjs'
 class Regression {
   constructor() {
-    this.x = [];
-    this.y = [];
-    this.n = 0;
-    this.beta = 1;
-    this.alpha = 0;
+    this.x = []; // x数据
+    this.y = []; // y数据
+    this.beta = null; // beta矩阵
   }
   /**
    * 适配
@@ -12,11 +11,15 @@ class Regression {
    * @param {Array} y 
    */
   fit(x, y) {
-    this.x = x;
-    this.y = y;
-    this.n = x.length;
+    this.x = new Array(x.length);
+    x.forEach((v, i) => {
+      this.x[i] = [1].concat(v);
+    });
+    this.y = new Array(y.length);
+    y.forEach((v, i) => {
+      this.y[i] = [].concat(v);
+    });
     this.beta = this.getBeta();
-    this.alpha = this.getAlpha(this.beta);
   }
   /**
    * 预测
@@ -24,53 +27,22 @@ class Regression {
    * @returns {Array} 预测结果数据集
    */
   predict(x) {
-    if(!Array.isArray(x)) x = [x];
-    const y = [];
-    for(const num of x) {
-      y.push(this.alpha + num * this.beta);
-    }
-    return y;
+    const xMat = new Matrix(x.length, 1);
+    x.forEach((v, i) => {
+      xMat.arr[i] = [1].concat(v);
+    });
+    const y = xMat.multiply(this.beta);
+    return y.arr;
   }
   /**
    * 获取beta
-   * @returns {Number}  斜率
+   * @returns {Matrix}  参数矩阵
    */
   getBeta() {
-    const beta = (this.sum(this.x, (v, k) => v * this.y[k])*this.n 
-                  - this.sum(this.x)*this.sum(this.y)) /
-                (this.sum(this.x, (v)=>v*v) * this.n  
-                  - Math.pow(this.sum(this.x), 2));
+    const xMat = new Matrix(this.x);
+    const yMat = new Matrix(this.y);
+    const beta = (xMat.T.multiply(xMat)).I.multiply(xMat.T.multiply(yMat)); // beta矩阵公式
     return beta;
-  }
-  /**
-   * 获取alpha
-   * @param {Number} beta 斜率
-   * @returns {Number}  偏移量
-   */
-  getAlpha(beta) {
-    return this.avg(this.y) - this.avg(this.x) * beta;
-  }
-  /**
-   * 求和(Σ)
-   * @param {Array} arr 数字集合
-   * @param {Function}  fun 每个集合的操作方法
-   */
-  sum(arr, fun = (v, k) => v) {
-    let s = 0;
-    const operate = fun;
-    for(const i in arr) {
-      const num = arr[i];
-      s += operate(num, i);
-    }
-    return s;
-  }
-  /**
-   * 均值
-   * @param {Array} arr 数字集合
-   */
-  avg(arr) {
-    const s = this.sum(arr);
-    return s / arr.length;
   }
 }
 

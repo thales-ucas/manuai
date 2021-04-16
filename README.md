@@ -20,3 +20,6 @@
 
 
 [一元线性回归](./regression/linear.md)
+
+
+[多元线性回归](./regression/multiple.md)

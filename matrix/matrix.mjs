@@ -2,9 +2,17 @@
  * 数学矩阵
  */
 class Matrix {
-  constructor(arr) {
-    this.check(arr);
-    this._arr = arr;
+  constructor(m, n) {
+    if (Array.isArray(m)) { // 非数字用作数组
+      this.check(m);
+      this._arr = m;  
+    } else {
+      if (m >= 1 && n >= 1) { // 数字的话必须行列大于等于1
+        this._arr = new Array(m).fill(0).map(() => new Array(n).fill(0));
+      } else {
+        throw(new Error('m & n must le 1'));
+      }
+    }
   }
   /**
    * 矩阵数组
@@ -36,6 +44,80 @@ class Matrix {
       }
     }
     return new Matrix(arr);
+  }
+  /**
+   * 行列式
+   */
+  get determinant() {
+    if (this.m !== this.n) { // 行列式必须是方阵
+      throw(new Error('determinant must be a square'));
+    }
+    const n = this.m;// 方阵阶数
+    let res = 0;
+    if (n > 3) {
+      for (let column = 0; column < n; column++) {// n 阶
+        const mat = new Matrix(n - 1, n - 1)// 去掉第 0 行第 column 列的矩阵
+        for (let i = 0; i < n - 1; i++) {
+          for (let j = 0; j < n - 1; j++) {
+            if (j < column) {
+              mat.arr[i][j] = this._arr[i + 1][j];
+            } else {
+              mat.arr[i][j] = this._arr[i + 1][j + 1];
+            }
+          }
+        }
+        res += this._arr[0][column] * Math.pow(-1, 0 + column) * mat.determinant;
+      }
+    } else if (n === 3) {// 3 阶
+      res = this._arr[0][0] * this._arr[1][1] * this._arr[2][2] +
+            this._arr[0][1] * this._arr[1][2] * this._arr[2][0] +
+            this._arr[0][2] * this._arr[1][0] * this._arr[2][1] -
+            this._arr[0][2] * this._arr[1][1] * this._arr[2][0] -
+            this._arr[0][1] * this._arr[1][0] * this._arr[2][2] -
+            this._arr[0][0] * this._arr[1][2] * this._arr[2][1];
+    } else if (n === 2) {// 2 阶
+      res = this._arr[0][0] * this._arr[1][1] - this._arr[0][1] * this._arr[1][0];
+    } else if (n === 1) {// 1 阶
+      res = this._arr[0][0];
+    }
+    return res;
+  }
+  /**
+   * 伴随矩阵
+   */
+  get H() {
+    if (this.m !== this.n) { // 行列式必须是方阵
+      throw(new Error('determinant must be a square'));
+    }
+    let n = this.arr.length;
+    if (n === 1) {
+      return new Matrix([[1]]);
+    }
+    const mat = new Matrix(n, n);
+    for (let row = 0; row < n; row++) {
+      for (let column = 0; column < n; column++) {
+        const amat = this.clone();
+        amat.arr.splice(row, 1);// 去掉第 row 行第 column 列的矩阵
+        amat.arr.map(arr => arr.splice(column, 1));
+        mat.arr[row][column] = Math.pow(-1, row + column) * amat.determinant;
+      }
+    }
+    return mat.T;
+  }
+  /**
+   * 逆矩阵
+   */
+  get I() {
+    if (this.m !== this.n) { // 行列式必须是方阵
+      throw(new Error('determinant must be a square'));
+    }
+    let mat = this.H;    
+    for (let i = 0; i < this.m; i++) {
+      for (let j = 0; j < this.n; j++) {
+        mat.arr[i][j] /= this.determinant;
+      }
+    }
+    return mat;
   }
   /**
    * 检测合法性
@@ -99,10 +181,13 @@ class Matrix {
   }
   /**
    * 矩阵相加
-   * @param {Matrix} mat 要想加的同形矩阵
+   * @param {Matrix} mat 要相加的同形矩阵
    * @returns {Matrix} 矩阵
    */
   plus(mat) {
+    if (this.m !== mat.m || this.n !== mat.n) { // 矩阵需要相同
+      throw(new Error('two matrixs must be same'));
+    }
     const arr = new Array(this.m);
     for (let i = 0; i < this.m; i++) {
       arr[i] = new Array(this.n);
@@ -114,10 +199,13 @@ class Matrix {
   }
   /**
    * 矩阵相减
-   * @param {Matrix} mat 要想加的同形矩阵
+   * @param {Matrix} mat 要相减的同形矩阵
    * @returns {Matrix} 矩阵
    */
    minus(mat) {
+    if (this.m !== mat.m || this.n !== mat.n) { // 矩阵需要相同
+      throw(new Error('two matrixs must be same'));
+    }
     const arr = new Array(this.m);
     for (let i = 0; i < this.m; i++) {
       arr[i] = new Array(this.n);
@@ -133,6 +221,9 @@ class Matrix {
    * @returns {Matrix} 矩阵
    */
   multiply(mat) {
+    if (this.n !== mat.m) { // 相乘矩阵行需等于当前矩阵列
+      throw(new Error('this n of matrix must equal to multipy m of matrix'));
+    }
     const arr = new Array(this.m);
     for (let i = 0; i < this.m; i++) {
       arr[i] = new Array(mat.n);
