@@ -1,7 +1,7 @@
 # 多元线性回归
 
 
-之前做了一元线性回归，但是影响因素往往不是一个，而是多个，有x~1~、x~2~、x~3~、……、x~n~
+之前做了一元线性回归，但是现实中影响因素往往不是一个，而是多个，有x~1~、x~2~、x~3~、……、x~n~
 
 
 ## 线性方程
@@ -19,30 +19,26 @@ y = &beta;~0~ + &beta;~1~x~1~ + &beta;~2~x~2~ + &beta;~3~x~3~  + &hellip; + &bet
 大写的X和Y代表了x和y的集合
 
 
-$Y=\begin{bmatrix}y_1\\y_2\\\vdots\\y_n\end{bmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;Y=\begin{bmatrix}y_1\\y_2\\\vdots\\y_n\end{bmatrix}" title="Y=\begin{bmatrix}y_1\\y_2\\\vdots\\y_n\end{bmatrix}" />
 
+>
 
-$X=\begin{bmatrix}
-1&x_{11}&\cdots&x_{1p}\\
-1&x_{21}&\cdots&x_{2p}\\
-\vdots&\vdots&\ddots&\vdots\\
-1&x_{n1}&\cdots&x_{np}
-\end{bmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;X=\begin{bmatrix}1&x_{11}&\cdots&x_{1p}\\1&x_{21}&\cdots&x_{2p}\\\vdots&\vdots&\ddots&\vdots\\1&x_{n1}&\cdots&x_{np}\end{bmatrix}" title="X=\begin{bmatrix}1&x_{11}&\cdots&x_{1p}\\1&x_{21}&\cdots&x_{2p}\\\vdots&\vdots&\ddots&\vdots\\1&x_{n1}&\cdots&x_{np}\end{bmatrix}" />
 
+>
 
-$\beta=\begin{bmatrix}\beta0\\\beta_1\\\beta_2\\\vdots\\\beta_n\end{bmatrix}$
-
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\beta=\begin{bmatrix}\beta0\\\beta_1\\\beta_2\\\vdots\\\beta_n\end{bmatrix}" title="\beta=\begin{bmatrix}\beta0\\\beta_1\\\beta_2\\\vdots\\\beta_n\end{bmatrix}" />
 
 > 注意，&beta;是从0开始，X在x值的矩阵的基础上，最左侧加了一列都是1的列
 
 
-$\epsilon=\begin{bmatrix}\epsilon_1\\\epsilon_2\\\vdots\\\epsilon_n\end{bmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\epsilon=\begin{bmatrix}\epsilon_1\\\epsilon_2\\\vdots\\\epsilon_n\end{bmatrix}" title="\epsilon=\begin{bmatrix}\epsilon_1\\\epsilon_2\\\vdots\\\epsilon_n\end{bmatrix}" />
 
 
 那么这个时候的多元线性回归的表示就变成了
 
 
-y=X&beta;+&epsilon;
+Y=X&beta;+&epsilon;
 
 
 其中X我们一般称为**设计矩阵**
@@ -51,7 +47,7 @@ y=X&beta;+&epsilon;
 使用最小二乘算出&beta;
 
 
-$\hat{\beta}=(X^TX)^{-1}X^TY$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\hat{\beta}=(X^TX)^{-1}X^TY" title="\hat{\beta}=(X^TX)^{-1}X^TY" />
 
 
 ## 推导过程
