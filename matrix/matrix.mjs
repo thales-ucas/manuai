@@ -83,6 +83,12 @@ class Matrix {
     return res;
   }
   /**
+   * determinant的简写
+   */
+  get det() {
+    return this.determinant;
+  }
+  /**
    * 伴随矩阵
    */
   get H() {
