@@ -74,41 +74,18 @@ console.log('零矩阵', new Matrix(3, 2));
 D = |A| = detA = det(a~ij~)
 
 
-$D=\begin{vmatrix}A\end{vmatrix}=
-\begin{vmatrix}
-a_{11}&a_{12}&\cdots&a_{1n}
-\\
-a_{21}&a_{22}&\cdots&a_{2n}
-\\
-\vdots&\vdots&\ddots&\vdots
-\\
-a_{n1}&a_{n2}&\cdots&a_{nn}
-\end{vmatrix}
-=\sum{(-1)^{k}a_{1k_{1}}a_{2k_{2}}\cdots a_{nk_{n}}}
-$
-
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;D=\begin{vmatrix}A\end{vmatrix}=\begin{vmatrix}a_{11}&a_{12}&\cdots&a_{1n}\\a_{21}&a_{22}&\cdots&a_{2n}\\\vdots&\vdots&\ddots&\vdots\\a_{n1}&a_{n2}&\cdots&a_{nn}\end{vmatrix}=\sum{(-1)^{k}a_{1k_{1}}a_{2k_{2}}\cdots&space;a_{nk_{n}}}" title="D=\begin{vmatrix}A\end{vmatrix}=\begin{vmatrix}a_{11}&a_{12}&\cdots&a_{1n}\\a_{21}&a_{22}&\cdots&a_{2n}\\\vdots&\vdots&\ddots&\vdots\\a_{n1}&a_{n2}&\cdots&a_{nn}\end{vmatrix}=\sum{(-1)^{k}a_{1k_{1}}a_{2k_{2}}\cdots a_{nk_{n}}}" />
 
 ## 示例
 
 
-$\begin{vmatrix}
-1&2
-\\
-3&4
-\end{vmatrix}
-=1\times4-2\times3=4-6=-2
-$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\begin{vmatrix}1&2\\3&4\end{vmatrix}=1\times4-2\times3=4-6=-2" title="\begin{vmatrix}1&2\\3&4\end{vmatrix}=1\times4-2\times3=4-6=-2" />
 
 
-$\begin{vmatrix}
-1&2&3
-\\
-4&5&6
-\\
-7&8&9
-\end{vmatrix}
-=1\times5\times9+2\times6\times7+3\times4\times8-1\times6\times8-2\times4\times9-3\times5\times7=45+84+96-48-72-105=0
-$
+>
+
+
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;\begin{vmatrix}1&2&3\\4&5&6\\7&8&9\end{vmatrix}=1\times5\times9&plus;2\times6\times7&plus;3\times4\times8-1\times6\times8-2\times4\times9-3\times5\times7=45&plus;84&plus;96-48-72-105=0" title="\begin{vmatrix}1&2&3\\4&5&6\\7&8&9\end{vmatrix}=1\times5\times9+2\times6\times7+3\times4\times8-1\times6\times8-2\times4\times9-3\times5\times7=45+84+96-48-72-105=0" />
 
 
 ## 代码实现
@@ -217,18 +194,7 @@ console.log('三阶行列式', new Matrix([[1,2,3], [4,5,6], [7,8,9]]).det);
 将余子式Mₒₑ再乘以-1的o+e次幂记为Aₒₑ，Aₒₑ叫做元素aₒₑ的代数余子式
 
 
-$D=\begin{vmatrix}
-1&2&3
-\\
-4&5&6
-\\
-7&8&9
-\end{vmatrix}\\
-A_{11}=(-1)^{1+1}\times\begin{vmatrix}
-5&6
-\\
-8&9
-\end{vmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;D=\begin{vmatrix}1&2&3\\4&5&6\\7&8&9\end{vmatrix}\\A_{11}=(-1)^{1&plus;1}\times\begin{vmatrix}5&6\\8&9\end{vmatrix}" title="D=\begin{vmatrix}1&2&3\\4&5&6\\7&8&9\end{vmatrix}\\A_{11}=(-1)^{1+1}\times\begin{vmatrix}5&6\\8&9\end{vmatrix}" />
 
 
 > A~11~就是去除了第一行和第一列，只剩下后面的内容
@@ -243,85 +209,17 @@ A_{11}=(-1)^{1+1}\times\begin{vmatrix}
 一个矩阵的伴随矩阵就是所有位置对应的代数余子式组成的矩阵
 
 
-$A=(a_{ij})_{n\times n}\\
-A^{*}=\begin{vmatrix}
-A_{11}&A_{12}&\cdots&A_{1n}
-\\
-A_{21}&A_{22}&\cdots&A_{2n}
-\\
-\vdots&\vdots&\ddots&\vdots
-\\
-A_{n1}&A_{n2}&\cdots&A_{nn}
-\end{vmatrix}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;A=(a_{ij})_{n\times&space;n}\\A^{*}=\begin{vmatrix}A_{11}&A_{12}&\cdots&A_{1n}\\A_{21}&A_{22}&\cdots&A_{2n}\\\vdots&\vdots&\ddots&\vdots\\A_{n1}&A_{n2}&\cdots&A_{nn}\end{vmatrix}" title="A=(a_{ij})_{n\times n}\\A^{*}=\begin{vmatrix}A_{11}&A_{12}&\cdots&A_{1n}\\A_{21}&A_{22}&\cdots&A_{2n}\\\vdots&\vdots&\ddots&\vdots\\A_{n1}&A_{n2}&\cdots&A_{nn}\end{vmatrix}" />
 
 
 ## 示例
 
 
-$A=\begin{bmatrix}
-1&2&3
-\\
-4&5&6
-\\
-7&8&9
-\end{bmatrix}\\
-A_{11}=(-1)^{1+1}\times\begin{vmatrix}
-5&6
-\\
-8&9
-\end{vmatrix}=1\times(5\times9-6\times8)=45-48=-3\\
-A_{12}=(-1)^{1+2}\times\begin{vmatrix}
-4&6
-\\
-7&9
-\end{vmatrix}=-1\times(4\times9-6\times7)=-1\times(36-42)=6\\
-A_{13}=(-1)^{1+3}\times\begin{vmatrix}
-4&5
-\\
-7&8
-\end{vmatrix}=-3\\
-A_{21}=(-1)^{2+1}\times\begin{vmatrix}
-2&3
-\\
-8&9
-\end{vmatrix}=6\\
-A_{22}=(-1)^{2+2}\times\begin{vmatrix}
-1&3
-\\
-7&9
-\end{vmatrix}=-12\\
-A_{23}=(-1)^{2+3}\times\begin{vmatrix}
-1&2
-\\
-7&8
-\end{vmatrix}=6\\
-A_{31}=(-1)^{3+1}\times\begin{vmatrix}
-2&3
-\\
-5&6
-\end{vmatrix}=-3\\
-A_{32}=(-1)^{3+2}\times\begin{vmatrix}
-1&3
-\\
-4&6
-\end{vmatrix}=6\\
-A_{33}=(-1)^{3+3}\times\begin{vmatrix}
-1&2
-\\
-4&5
-\end{vmatrix}=-3\\
-A^{*}=\begin{bmatrix}
--3&6&-3\\
-6&-12&6\\
--3&6&-3
-\end{bmatrix}
-$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;A=\begin{bmatrix}1&2&3\\4&5&6\\7&8&9\end{bmatrix}\\[5px]A_{11}=(-1)^{1&plus;1}\times\begin{vmatrix}5&6\\8&9\end{vmatrix}=1\times(5\times9-6\times8)=45-48=-3\\[5px]A_{12}=(-1)^{1&plus;2}\times\begin{vmatrix}4&6\\7&9\end{vmatrix}=-1\times(4\times9-6\times7)=-1\times(36-42)=6\\[5px]A_{13}=(-1)^{1&plus;3}\times\begin{vmatrix}4&5\\7&8\end{vmatrix}=-3\\[5px]A_{21}=(-1)^{2&plus;1}\times\begin{vmatrix}2&3\\8&9\end{vmatrix}=6\\[5px]A_{22}=(-1)^{2&plus;2}\times\begin{vmatrix}1&3\\7&9\end{vmatrix}=-12\\[5px]A_{23}=(-1)^{2&plus;3}\times\begin{vmatrix}1&2\\7&8\end{vmatrix}=6\\[5px]A_{31}=(-1)^{3&plus;1}\times\begin{vmatrix}2&3\\5&6\end{vmatrix}=-3\\[5px]A_{32}=(-1)^{3&plus;2}\times\begin{vmatrix}1&3\\4&6\end{vmatrix}=6\\[5px]A_{33}=(-1)^{3&plus;3}\times\begin{vmatrix}1&2\\4&5\end{vmatrix}=-3\\[5px]A^{*}=\begin{bmatrix}-3&6&-3\\6&-12&6\\-3&6&-3\end{bmatrix}" title="A=\begin{bmatrix}1&2&3\\4&5&6\\7&8&9\end{bmatrix}\\[5px]A_{11}=(-1)^{1+1}\times\begin{vmatrix}5&6\\8&9\end{vmatrix}=1\times(5\times9-6\times8)=45-48=-3\\[5px]A_{12}=(-1)^{1+2}\times\begin{vmatrix}4&6\\7&9\end{vmatrix}=-1\times(4\times9-6\times7)=-1\times(36-42)=6\\[5px]A_{13}=(-1)^{1+3}\times\begin{vmatrix}4&5\\7&8\end{vmatrix}=-3\\[5px]A_{21}=(-1)^{2+1}\times\begin{vmatrix}2&3\\8&9\end{vmatrix}=6\\[5px]A_{22}=(-1)^{2+2}\times\begin{vmatrix}1&3\\7&9\end{vmatrix}=-12\\[5px]A_{23}=(-1)^{2+3}\times\begin{vmatrix}1&2\\7&8\end{vmatrix}=6\\[5px]A_{31}=(-1)^{3+1}\times\begin{vmatrix}2&3\\5&6\end{vmatrix}=-3\\[5px]A_{32}=(-1)^{3+2}\times\begin{vmatrix}1&3\\4&6\end{vmatrix}=6\\[5px]A_{33}=(-1)^{3+3}\times\begin{vmatrix}1&2\\4&5\end{vmatrix}=-3\\[5px]A^{*}=\begin{bmatrix}-3&6&-3\\6&-12&6\\-3&6&-3\end{bmatrix}" />
 
 
 ## 代码实现
 
-
-我们在刚才的Matrix类增加两个方法分别是加法和减法
 
 
 ```js
@@ -384,7 +282,7 @@ console.log('伴随矩阵', new Matrix([[1,2,3], [4,5,6], [7,8,9]]).H);
 ## 表达式
 
 
-$A^{-1}=\frac{1}{\begin{vmatrix}A\end{vmatrix}}A^{*}$
+<img src="https://latex.codecogs.com/png.image?\dpi{110}&space;A^{-1}=\frac{1}{\begin{vmatrix}A\end{vmatrix}}A^{*}" title="A^{-1}=\frac{1}{\begin{vmatrix}A\end{vmatrix}}A^{*}" />
 
 
 伴随矩阵除以行列式就是逆矩阵
